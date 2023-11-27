@@ -1,0 +1,6 @@
+enum LOGIN_FIELD {
+  USERNAME = 'USERNAME',
+  PASSWORD = 'PASSWORD',
+}
+
+export default LOGIN_FIELD;
