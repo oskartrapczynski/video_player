@@ -1,10 +1,12 @@
 'use client';
-import LOGIN_FIELD from '@/constants/login';
+import LOGIN_FIELD from '@/constants/user/login';
 import { Box, Button, TextField } from '@mui/material';
+import axios from 'axios';
 import { enqueueSnackbar, SnackbarProvider } from 'notistack';
 import React, { useState } from 'react';
+import { UserFormContainer } from '@/components';
 
-const Login = () => {
+const UserLogin = () => {
   const [login, setLogin] = useState({
     [LOGIN_FIELD.USERNAME]: '',
     [LOGIN_FIELD.PASSWORD]: '',
@@ -39,29 +41,17 @@ const Login = () => {
     }
   };
 
+  const handleClick = () => {
+    axios.get('/api').then((response) => console.log(response.data));
+  };
+
   return (
     <>
       <SnackbarProvider />
-      <Box
-        sx={{
-          position: 'absolute',
-          left: '50%',
-          top: '50%',
-          transform: 'translate(-50%,-50%)',
-          display: 'flex',
-          flexGrow: 1,
-          flexWrap: 'wrap',
-          gap: 1,
-          width: 500,
-          height: 300,
-          p: 10,
-          borderRadius: 5,
-          background:
-            'linear-gradient(to top, #0cebeb55, #20e3b255, #29ffc655)',
-        }}
-      >
+      <UserFormContainer>
         <TextField
           fullWidth
+          label="Nazwa użytkownika"
           variant="outlined"
           name={LOGIN_FIELD.USERNAME}
           value={login[LOGIN_FIELD.USERNAME]}
@@ -69,6 +59,7 @@ const Login = () => {
         />
         <TextField
           fullWidth
+          label="Hasło"
           variant="outlined"
           name={LOGIN_FIELD.PASSWORD}
           value={login[LOGIN_FIELD.PASSWORD]}
@@ -77,9 +68,12 @@ const Login = () => {
         <Button fullWidth variant="contained">
           Login
         </Button>
-      </Box>
+        <Button fullWidth variant="contained" onClick={handleClick}>
+          Test
+        </Button>
+      </UserFormContainer>
     </>
   );
 };
 
-export default Login;
+export default UserLogin;

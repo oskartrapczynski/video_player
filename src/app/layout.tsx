@@ -1,3 +1,4 @@
+import { MenuHeader } from '@/components';
 import { CssBaseline } from '@mui/material';
 import type { Metadata } from 'next';
 
@@ -16,6 +17,7 @@ export default function RootLayout({
       <body>
         <>
           <CssBaseline />
+          <MenuHeader />
           {children}
         </>
       </body>
