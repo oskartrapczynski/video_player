@@ -1,13 +1,15 @@
 import MenuHeader from './common/menuHeader';
-import UserLogin from './user/UserLogin';
-import UserRegister from './user/UserRegister';
+import Login from './user/Login';
+import Register from './user/Register';
 import UserFormContainer from './user/UserFormContainer';
 import LoadingCircle from './common/LoadingCircle';
+import VideoCard from './video/VideoCard';
 
 export {
-  UserLogin,
-  UserRegister,
+  Login,
+  Register,
   UserFormContainer,
   MenuHeader,
   LoadingCircle,
+  VideoCard,
 };

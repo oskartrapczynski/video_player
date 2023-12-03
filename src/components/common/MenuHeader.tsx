@@ -6,6 +6,9 @@ const MenuHeader = () => {
     { name: 'Start', path: '' },
     { name: 'Logowanie', path: 'user/login' },
     { name: 'Rejestracja', path: 'user/register' },
+    { name: 'Filmy', path: 'admin/videos' },
+    { name: 'Klienci', path: 'admin/users' },
+    { name: 'Wypożyczenia', path: 'admin/borrows' },
   ];
   return (
     <Stack
@@ -15,7 +18,9 @@ const MenuHeader = () => {
       sx={{
         alignContent: 'center',
         justifyContent: 'center',
+
         p: 2,
+        mb: 2,
         background: 'linear-gradient(to top, #0cebebaa, #20e3b2aa, #29ffc6aa)',
       }}
     >

@@ -1,6 +1,6 @@
 import { REGISTER_FIELD } from '@/constants';
 
-export default interface IRegisterState {
+export default interface RegisterState {
   [REGISTER_FIELD.USERNAME]: {
     value: string;
     error: string;

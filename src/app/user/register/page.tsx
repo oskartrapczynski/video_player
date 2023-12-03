@@ -1,8 +1,7 @@
-import { UserRegister } from '@/components';
-import React from 'react';
+import { Register } from '@/components';
 
 const UserRegisterPage = () => {
-  return <UserRegister />;
+  return <Register />;
 };
 
 export default UserRegisterPage;

@@ -4,10 +4,10 @@ import { Button, TextField } from '@mui/material';
 import { enqueueSnackbar, SnackbarProvider } from 'notistack';
 import React, { useState } from 'react';
 import { UserFormContainer } from '@/components';
-import { IRegisterState } from '@/interfaces/index';
+import { RegisterState } from '@/interfaces';
 
-const UserRegister = () => {
-  const [register, setRegister] = useState<IRegisterState>(
+const Register = () => {
+  const [register, setRegister] = useState<RegisterState>(
     Object.assign(
       {},
       ...REGISTER_INPUT.map(({ name }) => ({
@@ -138,4 +138,4 @@ const UserRegister = () => {
   );
 };
 
-export default UserRegister;
+export default Register;

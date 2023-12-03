@@ -5,6 +5,7 @@ import axios from 'axios';
 import { enqueueSnackbar, SnackbarProvider } from 'notistack';
 import React, { useState } from 'react';
 import { UserFormContainer } from '@/components';
+import Link from 'next/link';
 
 const UserLogin = () => {
   const [login, setLogin] = useState({
@@ -68,9 +69,14 @@ const UserLogin = () => {
         <Button fullWidth variant="contained">
           Login
         </Button>
-        <Button fullWidth variant="contained" onClick={handleClick}>
-          Test
-        </Button>
+        <Link
+          href="/user/register"
+          style={{ justifyContent: 'center', alignContent: 'center' }}
+        >
+          <Button variant="text" onClick={handleClick}>
+            Nie masz konta ? Zarejestruj się
+          </Button>
+        </Link>
       </UserFormContainer>
     </>
   );
