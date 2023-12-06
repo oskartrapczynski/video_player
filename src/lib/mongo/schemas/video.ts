@@ -12,6 +12,7 @@ const videoSchema = new Schema<Video>({
   actors: [String],
   releasedAt: Number,
   addedAt: Number,
+  isAvailable: Boolean,
 });
 
 export default videoSchema;

@@ -1,6 +1,6 @@
 'use client';
 import { DATE_TYPE, VIDEO_FIELD, VIDEO_INPUT } from '@/constants';
-import { Button, TextField } from '@mui/material';
+import { Button, FormControlLabel, Switch, TextField } from '@mui/material';
 import { enqueueSnackbar, SnackbarProvider } from 'notistack';
 import React, { useState } from 'react';
 import { UserFormContainer } from '@/components';
@@ -14,11 +14,13 @@ interface Props {
 }
 
 const VideoAdd = ({ data, method = 'add' }: Props) => {
-  const procesValue = (val: any, type: VIDEO_FIELD) => {
-    if (val && type === VIDEO_FIELD.RELEASED_AT) {
-      return decodeTimeStamp(Number(val), DATE_TYPE.DATE);
+  const procesValue = (val: VideoState | undefined, type: VIDEO_FIELD) => {
+    if (!val && type === VIDEO_FIELD.AVAILABLE) return true;
+    if (!val) return '';
+    if (val && val[type] && type === VIDEO_FIELD.RELEASED_AT) {
+      return decodeTimeStamp(Number(val[type]), DATE_TYPE.DATE);
     }
-    return val;
+    return val[type];
   };
 
   const [video, setVideo] = useState<VideoState>(
@@ -26,7 +28,7 @@ const VideoAdd = ({ data, method = 'add' }: Props) => {
       {},
       ...VIDEO_INPUT.map(({ name }) => ({
         [name]: {
-          value: data ? procesValue(data[name], name) : '',
+          value: procesValue(data, name),
           error: '',
         },
       }))
@@ -147,18 +149,18 @@ const VideoAdd = ({ data, method = 'add' }: Props) => {
     }
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     try {
       if (!e.target.name) throw new Error('Error in register form');
 
-      const { name, value } = e.target;
+      const { name } = e.target;
+      const value =
+        name === VIDEO_FIELD.AVAILABLE ? e.target.checked : e.target.value;
 
       if (
         name === VIDEO_FIELD.RATE &&
         value !== '' &&
-        !value.match(/\b([1-9]|10)\b/gm)
+        !(value as string).match(/\b([1-9]|10)\b/gm)
       )
         return;
 
@@ -170,25 +172,45 @@ const VideoAdd = ({ data, method = 'add' }: Props) => {
     }
   };
 
+  console.log(video);
+
   return (
     <>
       <SnackbarProvider />
       <UserFormContainer>
         <>
-          {VIDEO_INPUT.map(({ name, label, type }, index) => (
-            <TextField
-              key={index}
-              fullWidth
-              variant="outlined"
-              label={label}
-              type={type}
-              name={name}
-              value={video[name]!.value}
-              onChange={handleChange}
-              error={!!video[name]!.error}
-              helperText={video[name]!.error}
-            />
-          ))}
+          {VIDEO_INPUT.map(({ name, label, type }, index) => {
+            if (name === VIDEO_FIELD.AVAILABLE) {
+              return (
+                <FormControlLabel
+                  key={index}
+                  label={label}
+                  labelPlacement="start"
+                  control={
+                    <Switch
+                      name={name}
+                      checked={!!video[name]!.value}
+                      onChange={handleChange}
+                    />
+                  }
+                />
+              );
+            }
+            return (
+              <TextField
+                key={index}
+                fullWidth
+                variant="outlined"
+                label={label}
+                type={type}
+                name={name}
+                value={video[name]!.value}
+                onChange={handleChange}
+                error={!!video[name]!.error}
+                helperText={video[name]!.error}
+              />
+            );
+          })}
         </>
         <Button
           sx={{ mt: 2, p: 1.5 }}

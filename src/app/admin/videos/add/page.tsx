@@ -1,5 +1,6 @@
 'use client';
 import { BackButton, VideoAdd } from '@/components';
+import { Video } from '@/interfaces/index';
 import { Box, Button } from '@mui/material';
 import axios from 'axios';
 import { enqueueSnackbar } from 'notistack';
@@ -7,9 +8,9 @@ import React from 'react';
 
 const AddPage = () => {
   const handleInsert = async () => {
-    const dbVideos = [
+    const dbVideos: Video[] = [
       {
-        title: 'NAPOLEON',
+        title: 'NAPOLEONXXXXXXXX',
         genre: ['Biograficzny'],
         director: 'Ridley Scott',
         length: '2:34',
@@ -23,6 +24,7 @@ const AddPage = () => {
           'Ludivine Sagnier',
         ],
         releasedAt: 1678406400000,
+        isAvailable: true,
       },
       {
         title: 'MARVELS',
@@ -39,6 +41,7 @@ const AddPage = () => {
           'Samuel L. Jackson',
         ],
         releasedAt: 1696291200000,
+        isAvailable: false,
       },
       {
         title: 'IGRZYSKA ŚMIERCI: BALLADA PTAKÓW I WĘŻY',
@@ -50,6 +53,7 @@ const AddPage = () => {
           'Każda saga ma swój początek, a każdy bunt potrzebuje pierwszej iskry. Oto Dziesiąte Głodowe Igrzyska. W Kapitolu osiemnastoletni Coriolanus Snow zamierza skorzystać z szansy, jaką jest rola mentora i zdobyć sławę. Potężny niegdyś ród Snowów podupadł i przyszłość Coriolanusa zależy od tego, czy zdoła pokonać konkurentów. Tyle że fortuna nie bardzo mu sprzyja, bo otrzymuje poniżające zadanie. Zostaje mentorem Lucy Gray Baird, dziewczyny z Dystryktu Dwunastego, najbiedniejszego z biednych. Ich losy będą od teraz nierozerwalnie ze sobą splecione – każda decyzja, którą podejmie Snow, może prowadzić do sukcesu lub porażki, triumfu lub klęski. Na arenie rozgrywa się walka na śmierć i życie. Poza areną w Coriolanusie zaczyna budzić się współczucie dla skazanej na zgubę trybutki... Czy warto przestrzegać zasad, gdy liczy się tylko przetrwanie za wszelką cenę?',
         actors: ['Tom Blyth', 'Rachel Zegler', 'Hunter Schafer'],
         releasedAt: 1675382400000,
+        isAvailable: true,
       },
       {
         title: 'THE PALACE',
@@ -70,6 +74,7 @@ const AddPage = () => {
           'Bronwyn James',
         ],
         releasedAt: 1686441600000,
+        isAvailable: true,
       },
       {
         title: 'PRZEJŚCIA',
@@ -90,6 +95,7 @@ const AddPage = () => {
           'William Nadylam',
         ],
         releasedAt: 1675209600000,
+        isAvailable: false,
       },
       {
         title: 'HOW TO HAVE SEX',
@@ -101,6 +107,7 @@ const AddPage = () => {
           'Trzy nastolatki wyruszają na wakacje pełne alkoholu, klubów i seksu.',
         actors: ['Mia McKenna-Bruce', 'Shaun Thomas', 'Lara Peake'],
         releasedAt: 1691625600000,
+        isAvailable: false,
       },
       {
         title: 'LĘK',
@@ -117,6 +124,7 @@ const AddPage = () => {
           'Maciej Kosiacki',
         ],
         releasedAt: 1683936000000,
+        isAvailable: false,
       },
       {
         title: 'ŻYCZENIE',
@@ -128,6 +136,7 @@ const AddPage = () => {
           'Nastoletnia Asha z pomocą przyjaciół oraz magicznej gwiazdy z nieba stawia czoła złemu władcy, by ocalić swoją społeczność.',
         actors: ['Ariana DeBose', 'Alan Tudyk', 'Chris Pine'],
         releasedAt: 1678838400000,
+        isAvailable: true,
       },
       {
         title: 'INWESTORZY AMATORZY',
@@ -139,6 +148,7 @@ const AddPage = () => {
           'Nastoletnia Asha z pomocą przyjaciół oraz magicznej gwiazdy z nieba stawia czoła złemu władcy, by ocalić swoją społeczność.',
         actors: ['Ariana DeBose', 'Alan Tudyk', 'Chris Pine'],
         releasedAt: 1695427200000,
+        isAvailable: true,
       },
       {
         title: 'SIOSTRZEŃSTWO ŚWIĘTEJ SAUNY',
@@ -150,6 +160,7 @@ const AddPage = () => {
           'W bujnym, zielonym lesie w południowej Estonii grupa kobiet zbiera się w tradycyjnej saunie, żeby wspólnie dzielić najgłębsze sekrety, przemyślenia i czerpać z siły swojej wspólnoty. Otoczone dymem i żarem obnażają nie tylko ciała, ale i emocje. Wypędzają z siebie lęki i wstyd, żeby odzyskać siłę i energię do życia. Film portretuje ten intymny rytuał, który odbywa się w ciasnej i ciemnej przestrzeni nasyconej oddechem i parą. Gorąc i pot są tu namacalne równie mocno, jak cielesność. Obserwujemy ciała i twarze skąpane w mroku w procesie wspólnotowego oczyszczania. Dowiadujemy się, czego doświadczyły w swoim życiu.',
         actors: ['Anna Hints', 'Juliette Cazanave', 'Tushar Prakash'],
         releasedAt: 1689724800000,
+        isAvailable: true,
       },
     ];
     const {
@@ -179,7 +190,7 @@ const AddPage = () => {
     <Box sx={{ p: 2 }}>
       <BackButton />
       <Button variant="contained" color="success" onClick={handleInsert}>
-        Dodaj film
+        Importuj filmy
       </Button>
       <VideoAdd />
     </Box>

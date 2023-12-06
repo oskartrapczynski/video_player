@@ -4,9 +4,9 @@ import { borrowSchema } from '../schemas';
 
 let borrowModel: mongoose.Model<Borrow>;
 try {
-  borrowModel = mongoose.model<Borrow>('videos');
+  borrowModel = mongoose.model<Borrow>('borrows');
 } catch (error) {
-  borrowModel = mongoose.model<Borrow>('videos', borrowSchema);
+  borrowModel = mongoose.model<Borrow>('borrows', borrowSchema);
 }
 
 export default borrowModel;

@@ -1,6 +1,7 @@
 import { VIDEO_FIELD } from '@/constants';
 
 const VIDEO_INPUT = [
+  { name: VIDEO_FIELD.AVAILABLE, label: 'Dostępne', type: 'text' },
   {
     name: VIDEO_FIELD.TITLE,
     label: 'Tytuł',

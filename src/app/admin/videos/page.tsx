@@ -24,6 +24,9 @@ import Link from 'next/link';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { LoadingCircle } from '@/components/index';
+import RuleIcon from '@mui/icons-material/Rule';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 const AdminVideosPage = () => {
   const [videos, setVideos] = useState<null | Video[]>();
@@ -39,7 +42,7 @@ const AdminVideosPage = () => {
     const processedData = data && data.length > 0 ? data : null;
 
     setVideos(processedData);
-    // console.log(processedData);
+    console.log(processedData);
 
     setLoading(false);
   };
@@ -82,6 +85,9 @@ const AdminVideosPage = () => {
               <TableRow>
                 {/* <TableCell>id</TableCell> */}
                 <TableCell align="left">Tytuł</TableCell>
+                <TableCell align="left">
+                  <RuleIcon />
+                </TableCell>
                 <TableCell align="left">Gatunek</TableCell>
                 <TableCell align="left">Reżyser</TableCell>
                 <TableCell align="left">Długość</TableCell>
@@ -99,6 +105,7 @@ const AdminVideosPage = () => {
                   {
                     _id,
                     title,
+                    isAvailable,
                     genre,
                     director,
                     length,
@@ -116,6 +123,13 @@ const AdminVideosPage = () => {
                     </TableCell> */}
                     <TableCell component="th" scope="row">
                       {title}
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      {isAvailable ? (
+                        <CheckCircleOutlineIcon color="success" />
+                      ) : (
+                        <HighlightOffIcon color="error" />
+                      )}
                     </TableCell>
                     <TableCell component="th" scope="row">
                       {genre && genre.length > 1 ? genre.length : genre}
@@ -152,7 +166,7 @@ const AdminVideosPage = () => {
                         </Link>
                         <IconButton
                           color="error"
-                          onClick={() => handleDelete(_id)}
+                          onClick={() => handleDelete(_id!)}
                         >
                           <DeleteIcon />
                         </IconButton>

@@ -8,6 +8,7 @@ enum VIDEO_FIELD {
   DESCRIPTION = 'description',
   ACTORS = 'actors',
   RELEASED_AT = 'releasedAt',
+  AVAILABLE = 'isAvailable',
 }
 
 export default VIDEO_FIELD;

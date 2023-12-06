@@ -5,6 +5,10 @@ export default interface VideoState {
     value: string;
     error: string;
   };
+  [VIDEO_FIELD.AVAILABLE]: {
+    value: boolean;
+    error: string;
+  };
   [VIDEO_FIELD.TITLE]: {
     value: string;
     error: string;
@@ -35,6 +39,10 @@ export default interface VideoState {
   };
   [VIDEO_FIELD.RELEASED_AT]: {
     value: string;
+    error: string;
+  };
+  [VIDEO_FIELD.AVAILABLE]: {
+    value: boolean;
     error: string;
   };
 }

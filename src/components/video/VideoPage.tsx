@@ -17,6 +17,7 @@ const VideoPage = ({
   actors,
   releasedAt,
   addedAt,
+  isAvailable,
 }: Video) => {
   return (
     <Box sx={{ p: 2, maxWidth: 500 }}>
@@ -55,6 +56,9 @@ const VideoPage = ({
           </Typography>
           <Typography variant="caption" color="text.secondary">
             Data wydania: {decodeTimeStamp(releasedAt, DATE_TYPE.DATE)}
+          </Typography>
+          <Typography variant="caption" color="text.secondary">
+            Dostępne: {isAvailable}
           </Typography>
         </Box>
         <Rating value={rate} max={10} readOnly />

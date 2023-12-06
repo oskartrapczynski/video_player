@@ -32,6 +32,7 @@ const VideoCard = ({
   releasedAt,
   addedAt,
   colorCard,
+  isAvailable,
 }: Video & Props) => {
   const shortDescription = !description
     ? 'Brak opisu'
@@ -70,6 +71,9 @@ const VideoCard = ({
             </Typography>
             <Typography variant="caption" color="text.secondary">
               Data wydania: {decodeTimeStamp(releasedAt, DATE_TYPE.DATE)}
+            </Typography>
+            <Typography variant="caption" color="text.secondary">
+              Dostępne: {isAvailable}
             </Typography>
           </Box>
           <Rating value={rate} max={10} readOnly />

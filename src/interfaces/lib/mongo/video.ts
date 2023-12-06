@@ -1,5 +1,5 @@
 export default interface Video {
-  _id: string;
+  _id?: string;
   title: string;
   genre: string[];
   director: string;
@@ -9,4 +9,5 @@ export default interface Video {
   actors: string[];
   releasedAt: number;
   addedAt?: number;
+  isAvailable: boolean;
 }
