@@ -4,6 +4,9 @@ import Register from './user/Register';
 import UserFormContainer from './user/UserFormContainer';
 import LoadingCircle from './common/LoadingCircle';
 import VideoCard from './video/VideoCard';
+import VideoPage from './video/VideoPage';
+import BackButton from './common/BackButton';
+import VideoAdd from './video/VideoAdd';
 
 export {
   Login,
@@ -12,4 +15,7 @@ export {
   MenuHeader,
   LoadingCircle,
   VideoCard,
+  VideoPage,
+  BackButton,
+  VideoAdd,
 };

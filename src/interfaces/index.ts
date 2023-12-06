@@ -1,7 +1,8 @@
 import ApiResponse from './api/response';
 import Borrow from './lib/mongo/borrow';
-import UsersModel from './lib/mongo/users';
-import Video from './lib/mongo/videos';
+import User from './lib/mongo/user';
+import Video from './lib/mongo/video';
 import RegisterState from './user/register/state';
+import VideoState from './video/state';
 
-export type { RegisterState, UsersModel, Video, Borrow, ApiResponse };
+export type { RegisterState, User, Video, Borrow, ApiResponse, VideoState };

@@ -5,6 +5,7 @@ import { enqueueSnackbar, SnackbarProvider } from 'notistack';
 import React, { useState } from 'react';
 import { UserFormContainer } from '@/components';
 import { RegisterState } from '@/interfaces';
+import Link from 'next/link';
 
 const Register = () => {
   const [register, setRegister] = useState<RegisterState>(
@@ -128,11 +129,18 @@ const Register = () => {
         <Button
           sx={{ mt: 2, p: 1.5 }}
           fullWidth
+          color="success"
           variant="contained"
           onClick={handleClick}
         >
           Zarejestruj
         </Button>
+        <Link
+          href="/user/login"
+          style={{ justifyContent: 'center', alignContent: 'center' }}
+        >
+          <Button variant="text">Masz konto ? Zaloguj się</Button>
+        </Link>
       </UserFormContainer>
     </>
   );

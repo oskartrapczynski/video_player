@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { User } from '../dbTypes/index';
+import { User } from '@/interfaces';
 import { userSchema } from '../schemas/index';
 
 let userModel: mongoose.Model<User>;

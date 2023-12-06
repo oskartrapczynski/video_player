@@ -1,5 +1,5 @@
 import mongoose, { Schema, Types } from 'mongoose';
-import { Video } from '../dbTypes';
+import { Video } from '@/interfaces';
 import { videoSchema } from '../schemas';
 
 let videoModel: mongoose.Model<Video>;

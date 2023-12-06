@@ -1,4 +1,5 @@
 export default interface Borrow {
+  _id: string;
   title: string;
   genre: string[];
   director: string;

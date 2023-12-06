@@ -13,6 +13,7 @@ import {
   Rating,
   Box,
 } from '@mui/material';
+import Link from 'next/link';
 import React from 'react';
 
 interface Props {
@@ -20,6 +21,7 @@ interface Props {
 }
 
 const VideoCard = ({
+  _id,
   title,
   genre,
   director,
@@ -74,9 +76,11 @@ const VideoCard = ({
         </Stack>
       </CardContent>
       <CardActions>
-        <Button variant="outlined" size="small">
-          Czytaj więcej
-        </Button>
+        <Link href={`/video/${_id}`}>
+          <Button variant="outlined" size="small">
+            Czytaj więcej
+          </Button>
+        </Link>
       </CardActions>
     </Card>
   );

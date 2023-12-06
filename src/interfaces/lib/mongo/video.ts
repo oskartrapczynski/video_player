@@ -1,13 +1,12 @@
-import { Types } from 'mongoose';
-
 export default interface Video {
+  _id: string;
   title: string;
-  genre: Types.Array<string>;
+  genre: string[];
   director: string;
   length: string;
   rate: number;
   description: string;
-  actors: Types.Array<string>;
+  actors: string[];
   releasedAt: number;
-  addedAt: number;
+  addedAt?: number;
 }

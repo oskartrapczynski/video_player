@@ -1,7 +1,8 @@
 import { Schema, Types } from 'mongoose';
-import { Borrow } from '../dbTypes/index';
+import { Borrow } from '@/interfaces';
 
 const borrowSchema = new Schema<Borrow>({
+  _id: Types.ObjectId,
   title: String,
   genre: [String],
   director: String,

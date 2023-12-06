@@ -42,8 +42,8 @@ const UserLogin = () => {
     }
   };
 
-  const handleClick = () => {
-    axios.get('/api').then((response) => console.log(response.data));
+  const handleLogin = () => {
+    console.log('logowanie');
   };
 
   return (
@@ -66,16 +66,19 @@ const UserLogin = () => {
           value={login[LOGIN_FIELD.PASSWORD]}
           onChange={handleChange}
         />
-        <Button fullWidth variant="contained">
-          Login
+        <Button
+          fullWidth
+          color="success"
+          variant="contained"
+          onClick={handleLogin}
+        >
+          Zaloguj
         </Button>
         <Link
           href="/user/register"
           style={{ justifyContent: 'center', alignContent: 'center' }}
         >
-          <Button variant="text" onClick={handleClick}>
-            Nie masz konta ? Zarejestruj się
-          </Button>
+          <Button variant="text">Nie masz konta ? Zarejestruj się</Button>
         </Link>
       </UserFormContainer>
     </>
