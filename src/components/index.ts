@@ -7,6 +7,8 @@ import VideoCard from './video/VideoCard';
 import VideoPage from './video/VideoPage';
 import BackButton from './common/BackButton';
 import VideoAdd from './video/VideoAdd';
+import VideoTable from './video/VideoTable';
+import UserTable from './user/UserTable';
 
 export {
   Login,
@@ -18,4 +20,6 @@ export {
   VideoPage,
   BackButton,
   VideoAdd,
+  VideoTable,
+  UserTable,
 };

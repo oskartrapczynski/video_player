@@ -28,7 +28,7 @@ const VideoPage = ({
             {title}
           </Typography>
           <Typography variant="caption" fontWeight="italic">
-            Dodano: {decodeTimeStamp(addedAt!, DATE_TYPE.DATE_TIME)}
+            {`Dodano: ${decodeTimeStamp(addedAt!, DATE_TYPE.DATE_TIME)}`}
           </Typography>
         </Box>
 
@@ -52,17 +52,17 @@ const VideoPage = ({
         </Typography>
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Typography variant="caption" color="text.secondary">
-            Długość: {length}
+            {`Długość: ${length}`}
           </Typography>
           <Typography variant="caption" color="text.secondary">
-            Data wydania: {decodeTimeStamp(releasedAt, DATE_TYPE.DATE)}
+            {`Data wydania: ${decodeTimeStamp(releasedAt, DATE_TYPE.DATE)}`}
           </Typography>
           <Typography variant="caption" color="text.secondary">
-            Dostępne: {isAvailable}
+            {`Dostępne: ${isAvailable ? 'Tak' : 'Nie'}`}
           </Typography>
         </Box>
         <Rating value={rate} max={10} readOnly />
-        <Button variant="contained">Wypożycz</Button>
+        <Button variant="contained">{'Wypożycz'}</Button>
       </Stack>
     </Box>
   );

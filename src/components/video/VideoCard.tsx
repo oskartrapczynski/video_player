@@ -14,7 +14,8 @@ import {
   Box,
 } from '@mui/material';
 import Link from 'next/link';
-import React from 'react';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 interface Props {
   colorCard: string;
@@ -45,7 +46,7 @@ const VideoCard = ({
         maxWidth: 300,
         height: 400,
         mx: 'auto',
-        backgroundColor: colorCard,
+        backgroundColor: isAvailable ? colorCard : '#aaa',
       }}
     >
       <CardContent>
@@ -67,13 +68,18 @@ const VideoCard = ({
           </Typography>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Typography variant="caption" color="text.secondary">
-              Długość: {length}
+              {`Długość: ${length}`}
             </Typography>
             <Typography variant="caption" color="text.secondary">
-              Data wydania: {decodeTimeStamp(releasedAt, DATE_TYPE.DATE)}
+              {`Data wydania: ${decodeTimeStamp(releasedAt, DATE_TYPE.DATE)}`}
             </Typography>
             <Typography variant="caption" color="text.secondary">
-              Dostępne: {isAvailable}
+              {'Dostępność:'}
+              {isAvailable ? (
+                <CheckCircleOutlineIcon color="success" />
+              ) : (
+                <HighlightOffIcon color="error" />
+              )}
             </Typography>
           </Box>
           <Rating value={rate} max={10} readOnly />

@@ -1,26 +1,26 @@
 import axios from 'axios';
 import { dbConnect, dbDisconnect } from '@/lib/mongo';
-import { videoModel } from '@/lib/mongo/models';
+import { userModel } from '@/lib/mongo/models';
 import { NextRequest, NextResponse } from 'next/server';
 import { ApiResponse } from '@/interfaces';
 import { mongoId } from '@/utils/index';
 
 interface Params {
   params: {
-    videoId: string | null;
+    userId: string | null;
   };
 }
 
 export const DELETE = async (
   req: NextRequest,
-  { params: { videoId } }: Params
+  { params: { userId } }: Params
 ) => {
   try {
-    if (!videoId) throw new Error('Missing ID');
+    if (!userId) throw new Error('Missing ID');
     await dbConnect();
 
-    const { deletedCount } = await videoModel.deleteOne({
-      _id: mongoId(videoId),
+    const { deletedCount } = await userModel.deleteOne({
+      _id: mongoId(userId),
     });
     if (!deletedCount) throw new Error('Film został już usunięty');
 
@@ -41,26 +41,23 @@ export const DELETE = async (
   }
 };
 
-export const PUT = async (
-  req: NextRequest,
-  { params: { videoId } }: Params
-) => {
+export const PUT = async (req: NextRequest, { params: { userId } }: Params) => {
   try {
-    if (!videoId) throw new Error('Missing ID');
+    if (!userId) throw new Error('Missing ID');
     const body = await req.json();
     if (!body) throw new Error('Missing Body');
     await dbConnect();
 
-    const { modifiedCount } = await videoModel.updateOne(
+    const { modifiedCount } = await userModel.updateOne(
       {
-        _id: mongoId(videoId),
+        _id: mongoId(userId),
       },
       { ...body }
     );
-    if (!modifiedCount) throw new Error('Film został już zmodyfikowany');
+    if (!modifiedCount) throw new Error('Użytkownik został już zmodyfikowany');
 
     return NextResponse.json<ApiResponse>({
-      info: 'Film pomyślnie zmodyfikowany',
+      info: 'Użytkownik pomyślnie zmodyfikowany',
       data: null,
       type: 'success',
     });

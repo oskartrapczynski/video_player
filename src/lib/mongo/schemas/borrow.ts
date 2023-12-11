@@ -3,22 +3,11 @@ import { Borrow } from '@/interfaces';
 
 const borrowSchema = new Schema<Borrow>({
   _id: Types.ObjectId,
-  userId: {
-    type: String,
-    required: true,
-  },
-  borrowDate: {
-    type: Number,
-    required: true,
-  },
-  expectedBorrowDate: {
-    type: Number,
-    required: true,
-  },
-  realBorrowDate: {
-    type: Number,
-    required: false,
-  },
+  userId: Types.ObjectId,
+  videoId: Types.ObjectId,
+  borrowDate: Number,
+  expectedBorrowDate: Number,
+  realBorrowDate: Number,
 });
 
 export default borrowSchema;

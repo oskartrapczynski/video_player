@@ -1,11 +1,12 @@
 enum REGISTER_FIELD {
-  USERNAME = 'userName',
+  USERNAME = 'username',
   PASSWORD = 'password',
   CONFIRM_PASSWORD = 'confirmPassword',
-  FIRSTNAME = 'firstName',
-  LASTNAME = 'lastName',
+  FIRSTNAME = 'firstname',
+  LASTNAME = 'lastname',
   ADDRESS = 'address',
   TEL = 'tel',
+  ROLE = 'role',
 }
 
 export default REGISTER_FIELD;

@@ -5,7 +5,7 @@ import { enqueueSnackbar, SnackbarProvider } from 'notistack';
 import React, { useState } from 'react';
 import { UserFormContainer } from '@/components';
 import { VideoState } from '@/interfaces';
-import { decodeTimeStamp, encodeTimeStamp } from '@/utils/index';
+import { decodeTimeStamp, encodeTimeStamp, isValidated } from '@/utils/index';
 import axios from 'axios';
 
 interface Props {
@@ -37,17 +37,6 @@ const VideoAdd = ({ data, method = 'add' }: Props) => {
   let textButton = '';
   if (method === 'add') textButton = 'Dodaj';
   if (method === 'update') textButton = 'Zaktualizuj';
-
-  const isValidated = () => {
-    try {
-      Object.values(video).forEach((item) => {
-        if (item.error) throw new Error();
-      });
-      return true;
-    } catch {
-      return false;
-    }
-  };
 
   const validate = () => {
     let errors = { ...video };
@@ -97,7 +86,7 @@ const VideoAdd = ({ data, method = 'add' }: Props) => {
 
   const handleClick = async () => {
     validate();
-    if (!isValidated()) {
+    if (!isValidated(video)) {
       return enqueueSnackbar('Uzupełnij poprawnie swoje dane', {
         variant: 'error',
       });

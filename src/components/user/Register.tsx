@@ -1,37 +1,71 @@
 'use client';
-import { REGISTER_FIELD, REGISTER_INPUT } from '@/constants';
-import { Button, TextField } from '@mui/material';
+import {
+  ADMIN_REGISTER_INPUT,
+  REGISTER_FIELD,
+  REGISTER_INPUT,
+  USER_ROLE,
+} from '@/constants';
+import {
+  Button,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Radio,
+  RadioGroup,
+  TextField,
+} from '@mui/material';
 import { enqueueSnackbar, SnackbarProvider } from 'notistack';
 import React, { useState } from 'react';
 import { UserFormContainer } from '@/components';
-import { RegisterState } from '@/interfaces';
+import { User, UserState } from '@/interfaces';
 import Link from 'next/link';
+import axios from 'axios';
+import { isValidated } from '@/utils/index';
 
-const Register = () => {
-  const [register, setRegister] = useState<RegisterState>(
+interface Props {
+  data?: User;
+  inputForm: typeof REGISTER_INPUT | typeof ADMIN_REGISTER_INPUT;
+  method?: 'add' | 'update';
+  formAccess: USER_ROLE;
+}
+
+const Register = ({
+  data,
+  inputForm,
+  method = 'add',
+  formAccess = USER_ROLE.USER,
+}: Props) => {
+  const [register, setRegister] = useState<UserState>(
     Object.assign(
       {},
-      ...REGISTER_INPUT.map(({ name }) => ({
-        [name]: { value: '', error: '' },
-      }))
+      ...inputForm.map(({ name }) => {
+        if (data) {
+          if (name === REGISTER_FIELD.CONFIRM_PASSWORD)
+            return {
+              [name]: { value: data[REGISTER_FIELD.PASSWORD], error: '' },
+            };
+          return { [name]: { value: data[name], error: '' } };
+        }
+        if (name === REGISTER_FIELD.ROLE) {
+          return {
+            [name]: { value: USER_ROLE.USER, error: '' },
+          };
+        }
+        return {
+          [name]: { value: '', error: '' },
+        };
+      })
     )
   );
 
-  const isValidated = () => {
-    try {
-      Object.values(register).forEach((item) => {
-        if (item.error) throw new Error();
-      });
-      return true;
-    } catch {
-      return false;
-    }
-  };
+  console.log(register);
 
   const validate = () => {
     let errors = { ...register };
 
-    if (!register[REGISTER_FIELD.USERNAME].value.match(/^[a-zA-z]{5,}$/gm))
+    if (
+      !register[REGISTER_FIELD.USERNAME].value.match(/^([a-zA-z]|[0-9]){5,}$/gm)
+    )
       errors[REGISTER_FIELD.USERNAME].error =
         'Login nie może zawierać znaków diakratycznych, specjalnych i być krótszy niż 5';
 
@@ -72,15 +106,40 @@ const Register = () => {
     setRegister({ ...errors });
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
     validate();
-    isValidated()
-      ? enqueueSnackbar('Pomyślnie zarejestrowano', {
-          variant: 'success',
-        })
-      : enqueueSnackbar('Uzupełnij poprawnie swoje dane', {
-          variant: 'error',
-        });
+    if (!isValidated(register)) {
+      return enqueueSnackbar('Uzupełnij poprawnie swoje dane', {
+        variant: 'error',
+      });
+    }
+    enqueueSnackbar('Pomyślnie zarejestrowano', {
+      variant: 'success',
+    });
+
+    const userData = Object.assign(
+      {},
+      ...Object.entries(register).map((item) => {
+        if (item[0] === REGISTER_FIELD.CONFIRM_PASSWORD) return;
+        return { [item[0]]: item[1].value };
+      })
+    );
+    if (method === 'add') {
+      const {
+        data: { info, type },
+      } = await axios.post('/api/admin/users', userData);
+      enqueueSnackbar(info, {
+        variant: type,
+      });
+    }
+    if (method === 'update') {
+      const {
+        data: { info, type },
+      } = await axios.put(`/api/admin/users/${data!._id}`, userData);
+      enqueueSnackbar(info, {
+        variant: type,
+      });
+    }
   };
 
   const handleChange = (
@@ -106,25 +165,55 @@ const Register = () => {
     }
   };
 
+  console.log(typeof inputForm);
+
   return (
     <>
       <SnackbarProvider />
       <UserFormContainer>
         <>
-          {REGISTER_INPUT.map(({ name, label, type }, index) => (
-            <TextField
-              key={index}
-              fullWidth
-              variant="outlined"
-              label={label}
-              type={type}
-              name={name}
-              value={register[name].value}
-              onChange={handleChange}
-              error={!!register[name].error}
-              helperText={register[name].error}
-            />
-          ))}
+          {inputForm.map(({ name, label, type }, index) => {
+            console.log(formAccess, name);
+            if (
+              formAccess === USER_ROLE.ADMIN &&
+              name === REGISTER_FIELD.ROLE
+            ) {
+              return (
+                <FormControl key={index}>
+                  <FormLabel>Role</FormLabel>
+                  <RadioGroup
+                    row
+                    value={register[name]!.value}
+                    onChange={handleChange}
+                    name={name}
+                  >
+                    {Object.values(USER_ROLE).map((role, index) => (
+                      <FormControlLabel
+                        key={index}
+                        value={role}
+                        control={<Radio />}
+                        label={role}
+                      />
+                    ))}
+                  </RadioGroup>
+                </FormControl>
+              );
+            }
+            return (
+              <TextField
+                key={index}
+                fullWidth
+                variant="outlined"
+                label={label}
+                type={type}
+                name={name}
+                value={register[name]!.value}
+                onChange={handleChange}
+                error={!!register[name]!.error}
+                helperText={register[name]!.error}
+              />
+            );
+          })}
         </>
         <Button
           sx={{ mt: 2, p: 1.5 }}
@@ -135,12 +224,16 @@ const Register = () => {
         >
           Zarejestruj
         </Button>
-        <Link
-          href="/user/login"
-          style={{ justifyContent: 'center', alignContent: 'center' }}
-        >
-          <Button variant="text">Masz konto ? Zaloguj się</Button>
-        </Link>
+        <>
+          {formAccess === USER_ROLE.USER && (
+            <Link
+              href="/user/login"
+              style={{ justifyContent: 'center', alignContent: 'center' }}
+            >
+              <Button variant="text">Masz konto ? Zaloguj się</Button>
+            </Link>
+          )}
+        </>
       </UserFormContainer>
     </>
   );

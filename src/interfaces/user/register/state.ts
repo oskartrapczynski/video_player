@@ -29,4 +29,8 @@ export default interface RegisterState {
     value: string;
     error: string;
   };
+  [REGISTER_FIELD.ROLE]?: {
+    value: string;
+    error: string;
+  };
 }
