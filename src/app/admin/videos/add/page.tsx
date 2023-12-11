@@ -3,6 +3,7 @@ import { BackButton, VideoAdd } from '@/components';
 import { Video } from '@/interfaces/index';
 import { Box, Button } from '@mui/material';
 import axios from 'axios';
+import { Types } from 'mongoose';
 import { enqueueSnackbar } from 'notistack';
 import React from 'react';
 
@@ -10,6 +11,7 @@ const AddPage = () => {
   const handleInsert = async () => {
     const dbVideos: Video[] = [
       {
+        _id: new Types.ObjectId('5573b1150804493456e584f8'),
         title: 'NAPOLEONXXXXXXXX',
         genre: ['Biograficzny'],
         director: 'Ridley Scott',
@@ -24,9 +26,10 @@ const AddPage = () => {
           'Ludivine Sagnier',
         ],
         releasedAt: 1678406400000,
-        isAvailable: true,
+        isAvailable: false,
       },
       {
+        _id: new Types.ObjectId('5573b1150804493456e584f9'),
         title: 'MARVELS',
         genre: ['Akcja'],
         director: 'Nia DaCosta',
@@ -44,6 +47,7 @@ const AddPage = () => {
         isAvailable: false,
       },
       {
+        _id: new Types.ObjectId('5573b1150804493456e584fa'),
         title: 'IGRZYSKA ŚMIERCI: BALLADA PTAKÓW I WĘŻY',
         genre: ['Akcja'],
         director: 'Francis Lawrence',
@@ -53,9 +57,10 @@ const AddPage = () => {
           'Każda saga ma swój początek, a każdy bunt potrzebuje pierwszej iskry. Oto Dziesiąte Głodowe Igrzyska. W Kapitolu osiemnastoletni Coriolanus Snow zamierza skorzystać z szansy, jaką jest rola mentora i zdobyć sławę. Potężny niegdyś ród Snowów podupadł i przyszłość Coriolanusa zależy od tego, czy zdoła pokonać konkurentów. Tyle że fortuna nie bardzo mu sprzyja, bo otrzymuje poniżające zadanie. Zostaje mentorem Lucy Gray Baird, dziewczyny z Dystryktu Dwunastego, najbiedniejszego z biednych. Ich losy będą od teraz nierozerwalnie ze sobą splecione – każda decyzja, którą podejmie Snow, może prowadzić do sukcesu lub porażki, triumfu lub klęski. Na arenie rozgrywa się walka na śmierć i życie. Poza areną w Coriolanusie zaczyna budzić się współczucie dla skazanej na zgubę trybutki... Czy warto przestrzegać zasad, gdy liczy się tylko przetrwanie za wszelką cenę?',
         actors: ['Tom Blyth', 'Rachel Zegler', 'Hunter Schafer'],
         releasedAt: 1675382400000,
-        isAvailable: true,
+        isAvailable: false,
       },
       {
+        _id: new Types.ObjectId('5573b1150804493456e584fb'),
         title: 'THE PALACE',
         genre: ['Dramat'],
         director: 'Roman Polański',
@@ -77,6 +82,7 @@ const AddPage = () => {
         isAvailable: true,
       },
       {
+        _id: new Types.ObjectId('5573b1150804493456e584fc'),
         title: 'PRZEJŚCIA',
         genre: ['Melodramat'],
         director: 'Ira Sachs',
@@ -95,9 +101,10 @@ const AddPage = () => {
           'William Nadylam',
         ],
         releasedAt: 1675209600000,
-        isAvailable: false,
+        isAvailable: true,
       },
       {
+        _id: new Types.ObjectId('5573b1150804493456e584fd'),
         title: 'HOW TO HAVE SEX',
         genre: ['Dramat'],
         director: 'Molly Manning Walker',
@@ -107,9 +114,10 @@ const AddPage = () => {
           'Trzy nastolatki wyruszają na wakacje pełne alkoholu, klubów i seksu.',
         actors: ['Mia McKenna-Bruce', 'Shaun Thomas', 'Lara Peake'],
         releasedAt: 1691625600000,
-        isAvailable: false,
+        isAvailable: true,
       },
       {
+        _id: new Types.ObjectId('5573b1150804493456e584fe'),
         title: 'LĘK',
         genre: ['Dramat'],
         director: 'Sławomir Fabicki',
@@ -124,9 +132,10 @@ const AddPage = () => {
           'Maciej Kosiacki',
         ],
         releasedAt: 1683936000000,
-        isAvailable: false,
+        isAvailable: true,
       },
       {
+        _id: new Types.ObjectId('5573b1150804493456e584ff'),
         title: 'ŻYCZENIE',
         genre: ['Animacja'],
         director: 'Chris Buck',
@@ -139,6 +148,7 @@ const AddPage = () => {
         isAvailable: true,
       },
       {
+        _id: new Types.ObjectId('5573b1150804493456e58500'),
         title: 'INWESTORZY AMATORZY',
         genre: ['Animacja'],
         director: 'Chris Buck',
@@ -151,6 +161,7 @@ const AddPage = () => {
         isAvailable: true,
       },
       {
+        _id: new Types.ObjectId('5573b1150804493456e58501'),
         title: 'SIOSTRZEŃSTWO ŚWIĘTEJ SAUNY',
         genre: ['Dokumentalny'],
         director: 'Anna Hints',

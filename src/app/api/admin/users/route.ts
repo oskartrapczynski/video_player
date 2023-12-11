@@ -4,6 +4,7 @@ import { userModel } from '@/lib/mongo/models';
 import { NextRequest, NextResponse } from 'next/server';
 import { ApiResponse, User } from '@/interfaces';
 import { USER_ROLE } from '@/constants/index';
+import { ObjectId } from 'mongoose';
 
 export const POST = async (req: NextRequest) => {
   try {

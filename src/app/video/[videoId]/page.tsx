@@ -1,6 +1,5 @@
 import { dbConnect, dbDisconnect } from '@/lib/mongo';
 import { videoModel } from '@/lib/mongo/models';
-import { mongoId } from '@/utils';
 import React from 'react';
 import { Types } from 'mongoose';
 import { VideoCard, VideoPage } from '@/components';
@@ -14,7 +13,7 @@ interface Params {
 
 export const getDataVideo = async (id: string) => {
   await dbConnect();
-  const data = await videoModel.find({ _id: mongoId(id) });
+  const data = await videoModel.find({ _id: id });
   await dbDisconnect();
   return data ? JSON.stringify(data) : null;
 };

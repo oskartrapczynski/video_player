@@ -9,6 +9,7 @@ import BackButton from './common/BackButton';
 import VideoAdd from './video/VideoAdd';
 import VideoTable from './video/VideoTable';
 import UserTable from './user/UserTable';
+import BorrowTable from './borrow/BorrowTable';
 
 export {
   Login,
@@ -22,4 +23,5 @@ export {
   VideoAdd,
   VideoTable,
   UserTable,
+  BorrowTable,
 };

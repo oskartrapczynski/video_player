@@ -16,10 +16,11 @@ import PersonIcon from '@mui/icons-material/Person';
 import SecurityIcon from '@mui/icons-material/Security';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { Types } from 'mongoose';
 
 interface Props {
   users: User[];
-  handleDelete: (id: string) => Promise<void>;
+  handleDelete: (id: Types.ObjectId) => Promise<void>;
 }
 
 const UserTable = ({ users, handleDelete }: Props) => {

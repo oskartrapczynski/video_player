@@ -2,7 +2,6 @@ import { BackButton, Register } from '@/components';
 import { ADMIN_REGISTER_INPUT, USER_ROLE } from '@/constants';
 import { dbConnect, dbDisconnect } from '@/lib/mongo';
 import { userModel } from '@/lib/mongo/models';
-import { mongoId } from '@/utils';
 import { Alert, Box } from '@mui/material';
 import React from 'react';
 
@@ -14,7 +13,7 @@ interface Params {
 
 export const getData = async (id: string) => {
   await dbConnect();
-  const data = await userModel.find({ _id: mongoId(id) });
+  const data = await userModel.find({ _id: id });
   await dbDisconnect();
   return data ? JSON.stringify(data) : null;
 };

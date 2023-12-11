@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react';
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 import Link from 'next/link';
 import { LoadingCircle, UserTable } from '@/components';
+import { Types } from 'mongoose';
 
 const AdminUsersPage = () => {
   const [users, setUsers] = useState<null | User[]>();
@@ -27,7 +28,7 @@ const AdminUsersPage = () => {
     setLoading(false);
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id: Types.ObjectId) => {
     try {
       const {
         data: { info, type },

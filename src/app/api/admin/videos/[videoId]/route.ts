@@ -3,7 +3,6 @@ import { dbConnect, dbDisconnect } from '@/lib/mongo';
 import { videoModel } from '@/lib/mongo/models';
 import { NextRequest, NextResponse } from 'next/server';
 import { ApiResponse } from '@/interfaces';
-import { mongoId } from '@/utils/index';
 
 interface Params {
   params: {
@@ -20,7 +19,7 @@ export const DELETE = async (
     await dbConnect();
 
     const { deletedCount } = await videoModel.deleteOne({
-      _id: mongoId(videoId),
+      _id: videoId,
     });
     if (!deletedCount) throw new Error('Film został już usunięty');
 
@@ -53,7 +52,7 @@ export const PUT = async (
 
     const { modifiedCount } = await videoModel.updateOne(
       {
-        _id: mongoId(videoId),
+        _id: videoId,
       },
       { ...body }
     );

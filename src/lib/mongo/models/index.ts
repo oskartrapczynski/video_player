@@ -1,5 +1,5 @@
-import rentListModel from './borrow';
+import borrowModel from './borrow';
 import userModel from './user';
 import videoModel from './video';
 
-export { videoModel, userModel, rentListModel };
+export { videoModel, userModel, borrowModel };

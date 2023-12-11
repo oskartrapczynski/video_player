@@ -17,10 +17,11 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Video } from '@/interfaces';
+import { Types } from 'mongoose';
 
 interface Props {
   videos: Video[];
-  handleDelete: (id: string) => Promise<void>;
+  handleDelete: (id: Types.ObjectId) => Promise<void>;
 }
 
 const VideoTable = ({ videos, handleDelete }: Props) => {

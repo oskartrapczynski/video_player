@@ -1,30 +1,30 @@
 import axios from 'axios';
 import { dbConnect, dbDisconnect } from '@/lib/mongo';
-import { videoModel } from '@/lib/mongo/models';
+import { borrowModel } from '@/lib/mongo/models';
 import { NextRequest, NextResponse } from 'next/server';
-import { ApiResponse, Video } from '@/interfaces';
+import { ApiResponse, Borrow } from '@/interfaces';
 
 export const POST = async (req: NextRequest) => {
   try {
-    const body: Video | Video[] = await req.json();
+    const body: Borrow | Borrow[] = await req.json();
     if (!body) throw new Error('Missing Body');
 
-    let processedData: Video | Video[];
+    let processedData: Borrow | Borrow[];
 
     await dbConnect();
 
     if (Array.isArray(body)) {
       processedData = body.map((item) => ({
         ...item,
-        addedAt: item.addedAt ? item.addedAt : Date.now(),
+        borrowDate: item.borrowDate ? item.borrowDate : Date.now(),
       }));
-      await videoModel.insertMany(processedData);
+      await borrowModel.insertMany(processedData);
     } else {
       processedData = {
         ...body,
-        addedAt: body.addedAt ? body.addedAt : Date.now(),
+        borrowDate: body.borrowDate ? body.borrowDate : Date.now(),
       };
-      await videoModel.insertMany(processedData);
+      await borrowModel.insertMany(processedData);
     }
 
     console.log(processedData);

@@ -62,7 +62,9 @@ const VideoPage = ({
           </Typography>
         </Box>
         <Rating value={rate} max={10} readOnly />
-        <Button variant="contained">{'Wypożycz'}</Button>
+        <Button variant="contained" disabled={!isAvailable}>
+          {'Wypożycz'}
+        </Button>
       </Stack>
     </Box>
   );

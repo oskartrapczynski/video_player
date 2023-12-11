@@ -7,10 +7,13 @@ import axios from 'axios';
 import { enqueueSnackbar } from 'notistack';
 import React from 'react';
 
+import { Types } from 'mongoose';
+
 const AddPage = () => {
   const handleInsert = async () => {
     const users: User[] = [
       {
+        _id: new Types.ObjectId('6573b04e0804493456e584f0'),
         username: 'admin',
         password: '!@QWaszx',
         role: USER_ROLE.ADMIN,
@@ -21,6 +24,7 @@ const AddPage = () => {
         registerAt: 1700825424000,
       },
       {
+        _id: new Types.ObjectId('6573b04e0804493456e584f1'),
         username: 'adam',
         password: '!@#QWEasdzxc',
         role: USER_ROLE.USER,
@@ -31,6 +35,7 @@ const AddPage = () => {
         registerAt: 1700919024000,
       },
       {
+        _id: new Types.ObjectId('6573b04e0804493456e584f2'),
         username: 'jerzy',
         password: '!@#QWEasdzxc',
         role: USER_ROLE.USER,
@@ -41,6 +46,7 @@ const AddPage = () => {
         registerAt: 1697877024000,
       },
       {
+        _id: new Types.ObjectId('6573b04e0804493456e584f3'),
         username: 'kacper',
         password: '!@#QWEasdzxc',
         role: USER_ROLE.USER,
@@ -51,6 +57,7 @@ const AddPage = () => {
         registerAt: 1677871680000,
       },
       {
+        _id: new Types.ObjectId('6573b04e0804493456e584f4'),
         username: 'janusz',
         password: '!@#QWEasdzxc',
         role: USER_ROLE.USER,
