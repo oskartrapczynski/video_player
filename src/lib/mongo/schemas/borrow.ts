@@ -3,8 +3,8 @@ import { Borrow } from '@/interfaces';
 
 const borrowSchema = new Schema<Borrow>({
   _id: Types.ObjectId,
-  userId: Types.ObjectId,
-  videoId: Types.ObjectId,
+  userId: { type: Types.ObjectId, ref: 'users' },
+  videoId: { type: Types.ObjectId, ref: 'videos' },
   borrowDate: Number,
   expectedBorrowDate: Number,
   realBorrowDate: Number,

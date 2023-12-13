@@ -46,7 +46,6 @@ const AdminVideosPage = () => {
   };
 
   const handleBorrowReturn = async (id: Types.ObjectId) => {
-    console.log('xddd');
     try {
       const {
         data: { info, type },

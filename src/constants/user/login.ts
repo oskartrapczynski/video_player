@@ -1,6 +1,6 @@
 enum LOGIN_FIELD {
-  USERNAME = 'USERNAME',
-  PASSWORD = 'PASSWORD',
+  USERNAME = 'username',
+  PASSWORD = 'password',
 }
 
 export default LOGIN_FIELD;

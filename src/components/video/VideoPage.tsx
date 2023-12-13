@@ -3,6 +3,9 @@ import { DATE_TYPE } from '@/constants/index';
 import { Video } from '@/interfaces';
 import { decodeTimeStamp } from '@/utils/index';
 import { Stack, Typography, Chip, Box, Rating, Button } from '@mui/material';
+import axios from 'axios';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { BackButton } from '..';
 
@@ -19,6 +22,17 @@ const VideoPage = ({
   addedAt,
   isAvailable,
 }: Video) => {
+  const session = useSession();
+  const router = useRouter();
+
+  const handleBorrow = async () => {
+    if (!session.data?.user._id) return router.push('/user/login');
+
+    const userId = session.data?.user._id;
+    const videoId = _id;
+
+    await axios.post('/api/borrow', { userId, videoId });
+  };
   return (
     <Box sx={{ p: 2, maxWidth: 500 }}>
       <BackButton />
@@ -62,7 +76,11 @@ const VideoPage = ({
           </Typography>
         </Box>
         <Rating value={rate} max={10} readOnly />
-        <Button variant="contained" disabled={!isAvailable}>
+        <Button
+          variant="contained"
+          disabled={!isAvailable}
+          onClick={handleBorrow}
+        >
           {'Wypożycz'}
         </Button>
       </Stack>

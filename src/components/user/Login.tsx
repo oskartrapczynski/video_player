@@ -3,9 +3,10 @@ import LOGIN_FIELD from '@/constants/user/login';
 import { Box, Button, TextField } from '@mui/material';
 import axios from 'axios';
 import { enqueueSnackbar, SnackbarProvider } from 'notistack';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { UserFormContainer } from '@/components';
 import Link from 'next/link';
+import { signIn, useSession } from 'next-auth/react';
 
 const UserLogin = () => {
   const [login, setLogin] = useState({
@@ -42,8 +43,15 @@ const UserLogin = () => {
     }
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     console.log('logowanie');
+    // const res = await axios.post('/api/auth/login', { ...login });
+
+    const res = await signIn('credentials', {
+      ...login,
+      redirect: true,
+      callbackUrl: '/',
+    });
   };
 
   return (
@@ -62,6 +70,7 @@ const UserLogin = () => {
           fullWidth
           label="Hasło"
           variant="outlined"
+          type="password"
           name={LOGIN_FIELD.PASSWORD}
           value={login[LOGIN_FIELD.PASSWORD]}
           onChange={handleChange}

@@ -10,6 +10,8 @@ import VideoAdd from './video/VideoAdd';
 import VideoTable from './video/VideoTable';
 import UserTable from './user/UserTable';
 import BorrowTable from './borrow/BorrowTable';
+import VideoProfile from './video/VideoProfile';
+import VideoProfileDetails from './video/VideoProfileDetails';
 
 export {
   Login,
@@ -24,4 +26,6 @@ export {
   VideoTable,
   UserTable,
   BorrowTable,
+  VideoProfile,
+  VideoProfileDetails,
 };
